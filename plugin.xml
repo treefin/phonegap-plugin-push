@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" 
-  xmlns:android="http://schemas.android.com/apk/res/android" 
-  xmlns:amazon="http://schemas.android.com/apk/lib/com.amazon.device.ads" 
-  xmlns:rim="http://www.blackberry.com/ns/widgets" 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:amazon="http://schemas.android.com/apk/lib/com.amazon.device.ads"
+  xmlns:rim="http://www.blackberry.com/ns/widgets"
   id="phonegap-plugin-push" version="2.3.0">
   <name>PushPlugin</name>
   <description>    This plugin allows your application to receive push notifications on Android, iOS and Windows devices.    Android uses Firebase Cloud Messaging.    iOS uses Apple APNS Notifications.    Windows uses Microsoft WNS Notifications.  </description>
@@ -89,11 +89,19 @@
     <config-file target="*-Release.plist" parent="aps-environment">
       <string>production</string>
     </config-file>
-    <source-file src="src/ios/AppDelegate+notification.m"/>
-    <source-file src="src/ios/PushPlugin.m"/>
     <header-file src="src/ios/AppDelegate+notification.h"/>
+    <source-file src="src/ios/AppDelegate+notification.m"/>
     <header-file src="src/ios/PushPlugin.h"/>
-    <framework src="FirebaseMessaging" type="podspec" spec="~> 2.0.0"/>
+    <source-file src="src/ios/PushPlugin.m"/>
+    <podspec>
+        <config>
+            <source url="https://github.com/CocoaPods/Specs.git"/>
+        </config>
+        <pods>
+            <pod name="Firebase/Core" spec="~> 6.2" />
+            <pod name="Firebase/Messaging" spec="~> 6.2" />
+        </pods>
+    </podspec>
     <framework src="PushKit.framework"/>
   </platform>
   <platform name="windows">
